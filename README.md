@@ -68,16 +68,26 @@ Sesuai permintaan Anda agar **"soal bisa di-reset dan di-acak agar tidak menyont
 - **Cheat Sheet Terpadu**: Tabel referensi cepat untuk metode string, list, dict, dan sintaks penting.
 - **Progress Tracker & LocalStorage**: Riwayat modul yang telah selesai otomatis tersimpan di browser.
 
-## 🌐 Deploy Publik di Render
+## 🌐 Deploy Publik di PythonAnywhere
 
-1. Push seluruh folder proyek ini ke repository GitHub milik Anda.
-2. Masuk ke [Render](https://render.com), pilih **New + → Web Service**, lalu hubungkan repository GitHub tersebut.
-3. Isi pengaturan deploy manual:
-   - **Name:** `pythonverse-learning-hub`
-   - **Runtime:** `Python 3`
-   - **Build Command:** kosongkan atau isi `echo "No build step required"`
-   - **Start Command:** `python server.py`
-   - **Plan:** pilih Free jika tersedia pada akun Anda.
-4. Klik **Create Web Service**. Setelah deploy selesai, buka URL `https://...onrender.com` yang diberikan Render.
+Situs ini dilayani sebagai aplikasi WSGI dan file statis oleh `pythonanywhere_wsgi.py`. Python Playground menjalankan kode Python di browser menggunakan Pyodide WebAssembly; kode pengunjung tidak dikirim atau dieksekusi di server.
 
-Python Playground dijalankan di browser pengunjung melalui Pyodide WebAssembly; server publik hanya menyajikan file web dan tidak menerima kode Python untuk dieksekusi. Koneksi internet diperlukan saat pertama kali memuat runtime Python dari jsDelivr. Kode dan progres tersimpan di browser masing-masing pengguna.
+1. Buat akun di [PythonAnywhere](https://www.pythonanywhere.com/) dan buka tab **Web**.
+2. Pilih **Add a new web app**, konfirmasi domain gratis `USERNAME.pythonanywhere.com`, lalu pilih **Manual configuration** dan versi Python yang tersedia di akun.
+3. Buka tab **Consoles**, jalankan Bash console, lalu clone repository:
+   ```bash
+   git clone https://github.com/fazle-star/py-by-fazle.git
+   ```
+4. Kembali ke tab **Web**. Buka file WSGI yang ditampilkan pada bagian **Code**, hapus isinya, lalu masukkan konfigurasi berikut. Ganti `USERNAME` dengan username PythonAnywhere Anda:
+   ```python
+   import sys
+
+   project_home = "/home/USERNAME/py-by-fazle"
+   if project_home not in sys.path:
+       sys.path.insert(0, project_home)
+
+   from pythonanywhere_wsgi import application
+   ```
+5. Klik **Reload** pada halaman Web. Situs akan tersedia di `https://USERNAME.pythonanywhere.com`.
+
+Jika repository sudah pernah di-clone, jalankan `cd ~/py-by-fazle && git pull` di Bash console untuk mengambil update. Playground memerlukan koneksi internet browser saat pertama kali memuat runtime dari jsDelivr. Kode dan progres tersimpan pada browser masing-masing pengunjung. Ketersediaan paket gratis, domain, dan proses pendaftaran mengikuti kebijakan PythonAnywhere saat ini; langkah ini tidak dapat melewati verifikasi pembayaran bila PythonAnywhere mewajibkannya pada akun Anda.

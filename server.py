@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Static web server for local development and Render deployment."""
+"""Static web server for local development."""
 
 import http.server
 import os
