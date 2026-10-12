@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "cleanUrls": false,
+  "framework": null,
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/$1"
+    }
+  ]
+}
