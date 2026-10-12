@@ -71,8 +71,13 @@ Sesuai permintaan Anda agar **"soal bisa di-reset dan di-acak agar tidak menyont
 ## 🌐 Deploy Publik di Render
 
 1. Push seluruh folder proyek ini ke repository GitHub milik Anda.
-2. Masuk ke [Render](https://render.com), pilih **New + → Blueprint**, lalu hubungkan repository GitHub tersebut.
-3. Render membaca konfigurasi dari `render.yaml`. Pilih **Apply** untuk membuat web service.
-4. Setelah deploy selesai, buka URL `https://...onrender.com` yang diberikan Render. URL tersebut dapat dibagikan kepada siapa pun.
+2. Masuk ke [Render](https://render.com), pilih **New + → Web Service**, lalu hubungkan repository GitHub tersebut.
+3. Isi pengaturan deploy manual:
+   - **Name:** `pythonverse-learning-hub`
+   - **Runtime:** `Python 3`
+   - **Build Command:** kosongkan atau isi `echo "No build step required"`
+   - **Start Command:** `python server.py`
+   - **Plan:** pilih Free jika tersedia pada akun Anda.
+4. Klik **Create Web Service**. Setelah deploy selesai, buka URL `https://...onrender.com` yang diberikan Render.
 
 Python Playground dijalankan di browser pengunjung melalui Pyodide WebAssembly; server publik hanya menyajikan file web dan tidak menerima kode Python untuk dieksekusi. Koneksi internet diperlukan saat pertama kali memuat runtime Python dari jsDelivr. Kode dan progres tersimpan di browser masing-masing pengguna.
