@@ -10,7 +10,7 @@ import time
 import webbrowser
 
 PORT = int(os.environ.get("PORT", "8000"))
-HOST = os.environ.get("HOST", "127.0.0.1")
+HOST = os.environ.get("HOST", "0.0.0.0" if "PORT" in os.environ else "127.0.0.1")
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
