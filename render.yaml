@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: pythonverse-learning-hub
+    runtime: python
+    plan: free
+    buildCommand: echo "No build step required"
+    startCommand: python server.py
+    healthCheckPath: /
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
